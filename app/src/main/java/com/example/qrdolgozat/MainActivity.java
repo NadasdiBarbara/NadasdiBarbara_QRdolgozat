@@ -1,9 +1,7 @@
 package com.example.qrdolgozat;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -45,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String bevitel = txtView_adatok.getText().toString();
-                if (bevitel == ""){
+                if (bevitel.equals("")){
                     Toast.makeText(MainActivity.this, "Nem lehet üres", Toast.LENGTH_SHORT).show();
                 }else{
                     try {
@@ -67,13 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Kiléptél", Toast.LENGTH_SHORT).show();
             }else{
                 txtView_adatok.setText(result.getContents());
-                try {
-                    Uri uri = Uri.parse(txtView_adatok.getText().toString());
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    startActivity(intent);
-                }catch (Exception e){
-                    Log.d("URL ERROR", e.toString());
-                }
+
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
